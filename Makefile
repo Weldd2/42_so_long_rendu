@@ -175,7 +175,7 @@ re: fclean all
 # -----------------------------------------------------------------------------
 # Installation MLX42 (submodule) - si nécessaire
 # -----------------------------------------------------------------------------
-install:
+install: mlx_install
 	git submodule init
 	git submodule update
 	@echo "Submodules initialized/updated."
