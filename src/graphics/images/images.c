@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 23:59:53 by antoinemura       #+#    #+#             */
-/*   Updated: 2025/01/21 15:57:59 by antoinemura      ###   ########.fr       */
+/*   Updated: 2025/01/22 19:04:51 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,26 @@ static t_images	load_images(mlx_t *mlx)
 {
 	t_images	images;
 
-	images.bloc0 = load_single_image(mlx, "assets/texture0.png");
-	images.bloc1 = load_single_image(mlx, "assets/texture1.png");
-	images.blocP = load_single_image(mlx, "assets/textureP.png");
-	images.blocE = load_single_image(mlx, "assets/textureE.png");
-	images.blocC = load_single_image(mlx, "assets/textureC.png");
+	images.bloc_0 = load_single_image(mlx, "assets/texture0.png");
+	images.bloc_1 = load_single_image(mlx, "assets/texture1.png");
+	images.bloc_p = load_single_image(mlx, "assets/textureP.png");
+	images.bloc_e = load_single_image(mlx, "assets/textureE.png");
+	images.bloc_c = load_single_image(mlx, "assets/textureC.png");
 	return (images);
 }
 
 static mlx_image_t	*get_image_by_tile(t_images *images, char tile)
 {
 	if (tile == '0')
-		return (images->bloc0);
+		return (images->bloc_0);
 	if (tile == '1')
-		return (images->bloc1);
+		return (images->bloc_1);
 	if (tile == 'E')
-		return (images->blocE);
+		return (images->bloc_e);
 	if (tile == 'P')
-		return (images->blocP);
+		return (images->bloc_p);
 	if (tile == 'C')
-		return (images->blocC);
+		return (images->bloc_c);
 	return (NULL);
 }
 

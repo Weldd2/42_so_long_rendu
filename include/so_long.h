@@ -6,7 +6,7 @@
 /*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 12:38:50 by antoinemura       #+#    #+#             */
-/*   Updated: 2025/01/21 16:57:08 by antoinemura      ###   ########.fr       */
+/*   Updated: 2025/01/22 19:05:08 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,27 @@
 # include "pf_printf.h"
 # include <stdbool.h>
 
-typedef struct s_pos {
-	size_t x;
-	size_t y;
+typedef struct s_pos
+{
+	size_t	x;
+	size_t	y;
 }	t_pos;
 
-typedef struct s_queue {
-	t_pos *data;
-	size_t front;
-	size_t rear;
-	size_t capacity;
+typedef struct s_queue
+{
+	t_pos	*data;
+	size_t	front;
+	size_t	rear;
+	size_t	capacity;
 }	t_queue;
 
-typedef struct	s_images
+typedef struct s_images
 {
-	mlx_image_t	*bloc0;
-	mlx_image_t	*bloc1;
-	mlx_image_t	*blocP;
-	mlx_image_t	*blocC;
-	mlx_image_t	*blocE;
+	mlx_image_t	*bloc_0;
+	mlx_image_t	*bloc_1;
+	mlx_image_t	*bloc_p;
+	mlx_image_t	*bloc_c;
+	mlx_image_t	*bloc_e;
 }	t_images;
 
 typedef struct s_map
@@ -84,7 +86,7 @@ typedef enum e_ok
 	E_ERR = 1
 }	t_ok;
 
-void			ft_error();
+void			ft_error(void);
 void			init_map(int fd, t_map *map);
 t_ok			is_rectangular(t_map map);
 t_ok			is_closed(t_map map);
@@ -102,6 +104,6 @@ bool			**init_visited(size_t height, size_t width);
 void			free_visited(bool **visited, size_t height);
 t_ok			bfs(t_map *map, size_t start_y, size_t start_x);
 t_images		images_to_window(mlx_t *mlx, t_map map);
-void			direction_keyhook(mlx_key_data_t keydata, void* param);
+void			direction_keyhook(mlx_key_data_t keydata, void *param);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amura <amura@student.42.fr>                +#+  +:+       +#+        */
+/*   By: antoinemura <antoinemura@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 22:07:55 by antoinemura       #+#    #+#             */
-/*   Updated: 2025/01/21 16:11:15 by amura            ###   ########.fr       */
+/*   Updated: 2025/01/22 19:04:44 by antoinemura      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,22 @@ static void	handle_move(mlx_key_data_t keydata, t_map *map, t_images *images)
 {
 	if (keydata.key == MLX_KEY_W)
 	{
-		images->blocP->instances[0].y -= 32;
+		images->bloc_p->instances[0].y -= 32;
 		map->p_y--;
 	}
 	if (keydata.key == MLX_KEY_S)
 	{
-		images->blocP->instances[0].y += 32;
+		images->bloc_p->instances[0].y += 32;
 		map->p_y++;
 	}
 	if (keydata.key == MLX_KEY_A)
 	{
-		images->blocP->instances[0].x -= 32;
+		images->bloc_p->instances[0].x -= 32;
 		map->p_x--;
 	}
 	if (keydata.key == MLX_KEY_D)
 	{
-		images->blocP->instances[0].x += 32;
+		images->bloc_p->instances[0].x += 32;
 		map->p_x++;
 	}
 }
@@ -59,12 +59,12 @@ static void	handle_collect(t_map *map, t_images *images)
 	if (map->tiles[map->p_y][map->p_x] == 'C')
 	{
 		map->c_count--;
-		while (i < images->blocC->count)
+		while (i < images->bloc_c->count)
 		{
-			if ((size_t)images->blocC->instances[i].x == map->p_x * 32
-				&& (size_t)images->blocC->instances[i].y == map->p_y * 32)
+			if ((size_t)images->bloc_c->instances[i].x == map->p_x * 32
+				&& (size_t)images->bloc_c->instances[i].y == map->p_y * 32)
 			{
-				images->blocC->instances[i].z--;
+				images->bloc_c->instances[i].z--;
 				map->tiles[map->p_y][map->p_x] = '0';
 			}
 			i++;
