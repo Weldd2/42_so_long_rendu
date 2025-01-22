@@ -1,0 +1,15 @@
+[submodule "lib/pf"]
+	path = lib/pf
+	url = git@github.com:Weldd2/42_libamura_pf.git
+[submodule "lib/mem"]
+	path = lib/mem
+	url = git@github.com:Weldd2/42_libamura_mem.git
+[submodule "lib/str"]
+	path = lib/str
+	url = git@github.com:Weldd2/42_libamura_str.git
+[submodule "lib/io"]
+	path = lib/io
+	url = git@github.com:Weldd2/42_libamura_io.git
+[submodule "lib/gnl"]
+	path = lib/gnl
+	url = git@github.com:Weldd2/42_libamura_gnl.git

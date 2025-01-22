@@ -1,0 +1,9 @@
+*.dSYM
+map.ber
+so_long
+.vscode
+so_long
+map.ber
+MLX42/
+build/
+obj
