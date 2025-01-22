@@ -8,6 +8,9 @@ CFLAGS      = -Wall -Wextra -Werror
 RM          = rm -f
 RMDIR       = rm -rf
 
+# On déclare le dossier dans lequel on veut stocker nos fichiers objets
+OBJDIR      = obj
+
 # -----------------------------------------------------------------------------
 # INCLUDES
 # -----------------------------------------------------------------------------
@@ -26,10 +29,9 @@ LIBS        = MLX42/build/libmlx42.a -lglfw -lm -ldl -lpthread
 # **************************************************************************** #
 #                              SOURCES PRINCIPAUX                              #
 # **************************************************************************** #
-# On énumère tous les .c de src/
 SO_LONG_SRCS = \
 src/so_long.c \
-src/core/error.c \
+src/error/error.c \
 src/graphics/graphics.c \
 src/graphics/images/images.c \
 src/graphics/input/input.c \
@@ -62,7 +64,6 @@ lib/io/src/io_putstr_fd.c
 # **************************************************************************** #
 #                              LIB : MEM                                       #
 # **************************************************************************** #
-# Sous-dossiers : arena, classic, mgc
 MEM_SRCS = \
 lib/mem/src/arena/mem_arena.c \
 lib/mem/src/arena/mem_arena_alloc.c \
@@ -125,9 +126,12 @@ lib/str/src/sub/str_slice.c
 # **************************************************************************** #
 #                    LISTE GLOBALE DES SOURCES ET DES OBJETS                   #
 # **************************************************************************** #
-
 SRCS        = $(SO_LONG_SRCS) $(GNL_SRCS) $(IO_SRCS) $(MEM_SRCS) $(PF_SRCS) $(STR_SRCS)
-OBJS        = $(SRCS:.c=.o)
+
+# On veut que chaque .c soit compilé en obj/<path>.o
+# ex: src/so_long.c      -> obj/src/so_long.o
+#     lib/gnl/src/gnl_.. -> obj/lib/gnl/src/gnl_..o
+OBJS        = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 # **************************************************************************** #
 #                                   RULES                                      #
@@ -145,16 +149,17 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(INCS) $^ $(LIBS) -o $@
 
 # -----------------------------------------------------------------------------
-# Compilation des .c en .o
+# Compilation des .c -> .o, placés dans obj/...
 # -----------------------------------------------------------------------------
-%.o: %.c
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 # -----------------------------------------------------------------------------
 # Nettoyage des fichiers objets
 # -----------------------------------------------------------------------------
 clean:
-	$(RM) $(OBJS)
+	$(RMDIR) $(OBJDIR)
 
 # -----------------------------------------------------------------------------
 # Nettoyage complet (exécutable + objets)
